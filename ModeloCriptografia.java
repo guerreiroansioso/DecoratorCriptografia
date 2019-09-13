@@ -8,12 +8,12 @@ public class ModeloCriptografia implements Criptografia
 	@Override
 	public String criptografarMensagem(String mensagemRecebida)
 	{
-		return "";
+		return mensagemRecebida;
 	}
 
 	@Override
 	public String descriptografarMensagem(String mensagemRecebida)
 	{
-		return "";
+		return mensagemRecebida;
 	}
 }

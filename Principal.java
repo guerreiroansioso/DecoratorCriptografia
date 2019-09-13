@@ -37,8 +37,8 @@ public class Principal
 			{
 				System.out.println("Escreva a mensagem desejada, por favor:");
 				Arquivo.setMensagem();
-				Criptografia criptografando = new Normal(new ModeloCriptografia());
-				byte[] byteDaMensagem = criptografando.criptografarMensagem(Arquivo.getMensagem()).getBytes();
+				Opicoes.mostrarOpicoes();
+				byte[] byteDaMensagem = Opicoes.getOpicoes().getBytes();
 				@SuppressWarnings("unused")
 				Path escreverNoArquivo = Files.write(caminhoDoArquivo, byteDaMensagem);
 			} catch (IOException e)
