@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Opicoes
 {
 	private static int opicaoSelecionada = 0;
-	private static String guardarResposta;
+	private static String guardarResposta, guardarDescriptografia;
 	
 	public static void mostrarOpicoes()
 	{
@@ -32,9 +32,30 @@ public class Opicoes
 			guardarResposta = criptografando.criptografarMensagem(Arquivo.getMensagem());
 		} else if (opicaoSelecionada == 4)
 		{
-			
 		}
 	}
 	
+	public static String descriptografar(String mensagemNoArquivo)
+	{
+		if(opicaoSelecionada == 1)
+		{
+			Criptografia criptografando = new ModeloCriptografia();
+			return guardarDescriptografia = criptografando.descriptografarMensagem(mensagemNoArquivo);
+		} else if (opicaoSelecionada == 2)
+		{
+			Criptografia criptografando = new Maiusculo(new ModeloCriptografia());
+			return guardarDescriptografia = criptografando.descriptografarMensagem(mensagemNoArquivo);
+		} else if (opicaoSelecionada == 3)
+		{
+			Criptografia criptografando = new Cezar(new ModeloCriptografia());
+			return guardarDescriptografia = criptografando.descriptografarMensagem(mensagemNoArquivo);
+		}
+		return mensagemNoArquivo;
+	}
+	
+	public static void setOpicaoSelecionada(int Valor) { opicaoSelecionada = Valor; }
+	
 	public static String getOpicoes() { return guardarResposta; }
+	
+	public static String getOpicoesDescriptografia() { return guardarDescriptografia; }
 }

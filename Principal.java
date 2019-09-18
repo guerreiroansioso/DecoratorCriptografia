@@ -60,6 +60,10 @@ public class Principal
 				System.out.println(stringTemporario);
 			}
 			
+			String depoisDeDescriptografar = Opicoes.descriptografar(linhasDoArquivo.get(0));
+			System.out.print("\n:: Mensagem descriptografada:  ");
+			System.out.println(depoisDeDescriptografar);
+			
 		} catch (IOException e)
 		{
 			System.out.println (":: O Arquivo nao pode ser lido.");
