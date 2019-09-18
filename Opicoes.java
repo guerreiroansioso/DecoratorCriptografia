@@ -9,9 +9,10 @@ public class Opicoes
 	
 	public static void mostrarOpicoes()
 	{
-		System.out.println(":: Selecione uma opicao de critografia, porfavor"
+		System.out.print("\n:: Selecione uma opicao de critografia, porfavor"
 				+ "\n (1) Sem criptografia."
-				+ "\n (2) Com criptografia deixar MAIUSCULO.");
+				+ "\n (2) Com criptografia deixar MAIUSCULO."
+				+ "\n (3) Com criptografia cifra de CEZAR.\n-> ");
 		
 		@SuppressWarnings("resource")
 		Scanner entrada = new Scanner(System.in);
@@ -27,7 +28,8 @@ public class Opicoes
 			guardarResposta = criptografando.criptografarMensagem(Arquivo.getMensagem());
 		} else if (opicaoSelecionada == 3)
 		{
-			
+			Criptografia criptografando = new Cezar(new ModeloCriptografia());
+			guardarResposta = criptografando.criptografarMensagem(Arquivo.getMensagem());
 		} else if (opicaoSelecionada == 4)
 		{
 			

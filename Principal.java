@@ -11,7 +11,7 @@ public class Principal
 
 	public static void main(String[] args)
 	{
-		System.out.println(":: Informe o endereco do arquivo, por favor: ");
+		System.out.println(":: Informe o endereco do arquivo EEE, por favor: ");
 		Arquivo.setCaminho();
 		
 		Path caminhoDoArquivo = Paths.get(Arquivo.getCaminho());
@@ -39,6 +39,7 @@ public class Principal
 				Arquivo.setMensagem();
 				Opicoes.mostrarOpicoes();
 				byte[] byteDaMensagem = Opicoes.getOpicoes().getBytes();
+				System.out.println(":: Mensagem foi gravado no arquivo.");
 				@SuppressWarnings("unused")
 				Path escreverNoArquivo = Files.write(caminhoDoArquivo, byteDaMensagem);
 			} catch (IOException e)
@@ -51,8 +52,8 @@ public class Principal
 		try 
 		{
 			List<String> linhasDoArquivo = Files.readAllLines (caminhoDoArquivo);
-			System.out.println ("\n:: A leitura do arquivo "+ caminhoDoArquivo + " foi concluido.\n"
-					+ "Informacao do arquivo:\n");
+			System.out.print("\n:: A leitura do arquivo "+ caminhoDoArquivo + " foi concluido.\n"
+					+ "\nInformacao do arquivo:  ");
 			
 			for (String stringTemporario : linhasDoArquivo)
 			{
