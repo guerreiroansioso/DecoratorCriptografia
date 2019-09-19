@@ -11,7 +11,7 @@ public class Principal
 
 	public static void main(String[] args)
 	{
-		System.out.println(":: Informe o endereco do arquivo EEE, por favor: ");
+		System.out.println(":: Informe o endereco do arquivo, por favor: ");
 		Arquivo.setCaminho();
 		
 		Path caminhoDoArquivo = Paths.get(Arquivo.getCaminho());
@@ -22,7 +22,7 @@ public class Principal
 			try 
 			{
 				Path criarCaminhoDoArquivo = Files.createFile (caminhoDoArquivo);
-				System.out.println ("Arquivo criado em : "+criarCaminhoDoArquivo);
+				System.out.println (":: Arquivo criado em : "+criarCaminhoDoArquivo);
 				arquivoJaExiste = true;
 			} catch (IOException e)
 			{
@@ -39,12 +39,13 @@ public class Principal
 				Arquivo.setMensagem();
 				Opicoes.mostrarOpicoes();
 				byte[] byteDaMensagem = Opicoes.getOpicoes().getBytes();
-				System.out.println(":: Mensagem foi gravado no arquivo.");
+				System.out.println(":: Mensagem foi gravada no arquivo.");
 				@SuppressWarnings("unused")
 				Path escreverNoArquivo = Files.write(caminhoDoArquivo, byteDaMensagem);
 			} catch (IOException e)
 			{
-				System.out.println (":: Ouve problemas ao ler a mensagem e escreve-la no arquivo.");
+				System.out.println (":: Ouve problemas ao ler a mensagem e escreve-la no arquivo."
+						+ " Verifique se o caminho do arquivo esta correto, por favor.");
 			}
 			
 		}

@@ -11,8 +11,9 @@ public class Opicoes
 	{
 		System.out.print("\n:: Selecione uma opicao de critografia, porfavor"
 				+ "\n (1) Sem criptografia."
-				+ "\n (2) Com criptografia deixar MAIUSCULO."
-				+ "\n (3) Com criptografia cifra de CEZAR.\n-> ");
+				+ "\n (2) Com criptografia cifra de CEZAR."
+				+ "\n (3) Com criptografia cifra de VIRGENERE."
+				+ "\n (3) Com criptografia cifra de CEZAR + cifra de VIRGENERE\n-> ");
 		
 		@SuppressWarnings("resource")
 		Scanner entrada = new Scanner(System.in);
@@ -24,14 +25,16 @@ public class Opicoes
 			guardarResposta = criptografando.criptografarMensagem(Arquivo.getMensagem());
 		} else if (opicaoSelecionada == 2)
 		{
-			Criptografia criptografando = new Maiusculo(new ModeloCriptografia());
+			Criptografia criptografando = new Cezar(new ModeloCriptografia());
 			guardarResposta = criptografando.criptografarMensagem(Arquivo.getMensagem());
 		} else if (opicaoSelecionada == 3)
 		{
-			Criptografia criptografando = new Cezar(new ModeloCriptografia());
+			Criptografia criptografando = new Virgenere(new ModeloCriptografia());
 			guardarResposta = criptografando.criptografarMensagem(Arquivo.getMensagem());
 		} else if (opicaoSelecionada == 4)
 		{
+			Criptografia criptografando = new Virgenere(new Cezar(new ModeloCriptografia()));
+			guardarResposta = criptografando.criptografarMensagem(Arquivo.getMensagem());
 		}
 	}
 	
@@ -43,13 +46,14 @@ public class Opicoes
 			return guardarDescriptografia = criptografando.descriptografarMensagem(mensagemNoArquivo);
 		} else if (opicaoSelecionada == 2)
 		{
-			Criptografia criptografando = new Maiusculo(new ModeloCriptografia());
+			Criptografia criptografando = new Cezar(new ModeloCriptografia());
 			return guardarDescriptografia = criptografando.descriptografarMensagem(mensagemNoArquivo);
 		} else if (opicaoSelecionada == 3)
 		{
-			Criptografia criptografando = new Cezar(new ModeloCriptografia());
+			Criptografia criptografando = new Virgenere(new ModeloCriptografia());
 			return guardarDescriptografia = criptografando.descriptografarMensagem(mensagemNoArquivo);
 		}
+		
 		return mensagemNoArquivo;
 	}
 	

@@ -27,7 +27,7 @@ public class Cezar extends DecoratorCriptografia
 	@Override
 	public String descriptografarMensagem(String mensagemRecebida)
 	{
-		System.out.print("\n\nDigite a chave de criptografia:\n-> ");
+		System.out.print("\n\nDigite a chave de criptografia: (CEZAR)\n-> ");
 		guardarChave = entrada.nextInt();
 		
 		String guardarCriptografia = criptografiaTemporaria.criptografarMensagem(mensagemRecebida);
