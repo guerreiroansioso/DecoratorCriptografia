@@ -11,7 +11,8 @@ public class Principal
 
 	public static void main(String[] args)
 	{
-		System.out.println(":: Informe o endereco do arquivo, por favor: ");
+		System.out.println(":: Informe o endereco do arquivo, por favor: "
+				+ "\n(Se o arquivo nao exister ele sera criado)");
 		Arquivo.setCaminho();
 		
 		Path caminhoDoArquivo = Paths.get(Arquivo.getCaminho());
@@ -37,8 +38,8 @@ public class Principal
 			{
 				System.out.println("Escreva a mensagem desejada, por favor:");
 				Arquivo.setMensagem();
-				Opicoes.mostrarOpicoes();
-				byte[] byteDaMensagem = Opicoes.getOpicoes().getBytes();
+				Opcoes.mostrarOpicoes();
+				byte[] byteDaMensagem = Opcoes.getOpicoes().getBytes();
 				System.out.println(":: Mensagem foi gravada no arquivo.");
 				@SuppressWarnings("unused")
 				Path escreverNoArquivo = Files.write(caminhoDoArquivo, byteDaMensagem);
@@ -61,7 +62,7 @@ public class Principal
 				System.out.println(stringTemporario);
 			}
 			
-			String depoisDeDescriptografar = Opicoes.descriptografar(linhasDoArquivo.get(0));
+			String depoisDeDescriptografar = Opcoes.descriptografar(linhasDoArquivo.get(0));
 			System.out.print("\n:: Mensagem descriptografada:  ");
 			System.out.println(depoisDeDescriptografar);
 			

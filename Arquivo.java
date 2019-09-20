@@ -24,7 +24,7 @@ public class Arquivo
 	{
 		System.out.print("-> ");
 		String fazerLeitura = entrada.nextLine();
-		mensagemDoUsuarioDigitada = Filtro.filtrarMensagem(fazerLeitura);
+		mensagemDoUsuarioDigitada = fazerLeitura;
 	}
 	
 	static String getMensagem()

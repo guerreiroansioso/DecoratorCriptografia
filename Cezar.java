@@ -9,18 +9,18 @@ public class Cezar extends DecoratorCriptografia
 		super(novaCriptografia);
 	}
 	
-	private int guardarChave = 0;
+	private int guardarChaveInt = 0;
 	
 	Scanner entrada = new Scanner(System.in);
 	
 	@Override
 	public String criptografarMensagem(String mensagemRecebida)
 	{
-		System.out.print("\nDigite a chave de criptografia:\n-> ");
-		guardarChave = entrada.nextInt();
+		System.out.print("\nDigite a chave de criptografia: (CEZAR)\n-> ");
+		guardarChaveInt = entrada.nextInt();
 		
 		String guardarCriptografia = criptografiaTemporaria.criptografarMensagem(mensagemRecebida);
-		guardarCriptografia = deslocarCezar(guardarChave, guardarCriptografia);
+		guardarCriptografia = deslocarCezar(guardarChaveInt, guardarCriptografia);
 		return guardarCriptografia;
 	}
 
@@ -28,87 +28,68 @@ public class Cezar extends DecoratorCriptografia
 	public String descriptografarMensagem(String mensagemRecebida)
 	{
 		System.out.print("\n\nDigite a chave de criptografia: (CEZAR)\n-> ");
-		guardarChave = entrada.nextInt();
+		guardarChaveInt = entrada.nextInt();
 		
-		String guardarCriptografia = criptografiaTemporaria.criptografarMensagem(mensagemRecebida);
-		guardarCriptografia = arrumarCezar(guardarChave, guardarCriptografia);
+		String guardarCriptografia = criptografiaTemporaria.descriptografarMensagem(mensagemRecebida);
+		guardarCriptografia = arrumarCezar(guardarChaveInt, guardarCriptografia);
 		return guardarCriptografia;
 	}
 	
 	private String deslocarCezar(int chaveDeCriptografia, String mensagemUtilizado)
 	{
 		String novaMensagem = "";
-		int chaveRedimencionada = 0, numeroLoop = 0;
+		int[] arrayMensagem = new int[mensagemUtilizado.length()];
+		int numeroLoop = 0, chaveRedimencionada = 0;
 		
 		while(numeroLoop < chaveDeCriptografia)
 		{
-			if(chaveRedimencionada > 24) { chaveRedimencionada = 0; } else { chaveRedimencionada++; }
+			if(numeroLoop > 25) { chaveRedimencionada = 0; } else { chaveRedimencionada++; }
 			numeroLoop++;
 		}
 		
-		for(int numero = 0; numero < mensagemUtilizado.length(); numero ++)
+		for(int numero = 0; numero < mensagemUtilizado.length(); numero++)
 		{
-			int mensagemInteiros = ((int) mensagemUtilizado.charAt(numero)) + chaveRedimencionada;
-			
-			if(mensagemInteiros > 90 && mensagemInteiros <= (90 + chaveRedimencionada))
-			{
-				mensagemInteiros -= 26;
-			}
-			
-			if(mensagemInteiros > 122 && mensagemInteiros <= (122 + chaveRedimencionada))
-			{
-				mensagemInteiros -= 26;
-			}
-			
-			novaMensagem += (char)mensagemInteiros;
+			arrayMensagem[numero] = (int) mensagemUtilizado.charAt(numero) - 65;
 		}
+		
+		for(int numero = 0, marcador = 1; numero < mensagemUtilizado.length(); numero++)
+		{
+			int numeroTemporario = chaveRedimencionada + arrayMensagem[numero] + 64;
+			if(numeroTemporario < 90) { numeroTemporario += marcador; } else if(numeroTemporario >= 91)
+			{ numeroTemporario -= 25; } else { numeroTemporario -= 25; }
+			novaMensagem += (char)numeroTemporario;
+		}
+		
 		return novaMensagem;
 	}
 	
 	private String arrumarCezar(int chaveDeCriptografia, String mensagemUtilizado)
 	{
+		mensagemUtilizado = mensagemUtilizado.toUpperCase();
 		String novaMensagem = "";
-		int chaveRedimencionada = 0, numeroLoop = 0;
+		int[] arrayMensagem = new int[mensagemUtilizado.length()];
+		System.out.println(chaveDeCriptografia);
+		int numeroLoop = 0, chaveRedimencionada = 0;
 		
 		while(numeroLoop < chaveDeCriptografia)
 		{
-			if(chaveRedimencionada > 24) { chaveRedimencionada = 0; } else { chaveRedimencionada++; }
+			if(numeroLoop > 25) { chaveRedimencionada = 0; } else { chaveRedimencionada++; }
 			numeroLoop++;
 		}
 		
-		for(int numero = 0; numero < mensagemUtilizado.length(); numero ++)
+		for(int numero = 0; numero < mensagemUtilizado.length(); numero++)
 		{
-			int mensagemInteiros = ((int) mensagemUtilizado.charAt(numero) - chaveRedimencionada);
-			
-			if(mensagemInteiros > (64 - chaveRedimencionada) && mensagemInteiros < 65)
-			{
-				mensagemInteiros += 26;
-			}
-			
-			if(mensagemInteiros > (96 - chaveRedimencionada) && mensagemInteiros < 97)
-			{
-				mensagemInteiros += 26;
-			}
-			
-			novaMensagem += (char)mensagemInteiros;
+			arrayMensagem[numero] = (int) mensagemUtilizado.charAt(numero) - 65;
 		}
+		
+		for(int numero = 0, marcador = 1; numero < mensagemUtilizado.length(); numero++)
+		{
+			int numeroTemporario = arrayMensagem[numero] - chaveRedimencionada + 64;
+			if(numeroTemporario < 90) { numeroTemporario += marcador; }
+			if(numeroTemporario < 65) { numeroTemporario += 26; }
+			novaMensagem += (char)numeroTemporario;
+		}
+		
 		return novaMensagem;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

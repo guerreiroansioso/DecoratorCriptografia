@@ -8,6 +8,8 @@ public class ModeloCriptografia implements Criptografia
 	@Override
 	public String criptografarMensagem(String mensagemRecebida)
 	{
+		mensagemRecebida = Filtro.filtrarMensagem(mensagemRecebida);
+		mensagemRecebida = mensagemRecebida.toUpperCase();
 		return mensagemRecebida;
 	}
 
