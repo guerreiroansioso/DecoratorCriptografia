@@ -52,8 +52,7 @@ public class Virgenere extends DecoratorCriptografia
 		for(int numero = 0, marcador = 1; numero < mensagemUtilizado.length(); numero++)
 		{
 			int numeroTemporario = arrayChave[numero] + arrayMensagem[numero] + 64;
-			if(numeroTemporario < 90) { numeroTemporario += marcador; } else if(numeroTemporario >= 91)
-			{ numeroTemporario -= 25; } else { numeroTemporario -= 25; }
+			if(numeroTemporario < 90) { numeroTemporario += marcador; } else { numeroTemporario -= 25; }
 			novaMensagem += (char)numeroTemporario;
 		}
 		
